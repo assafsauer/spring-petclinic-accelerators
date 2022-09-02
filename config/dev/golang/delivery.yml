@@ -1,0 +1,29 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: golang
+  labels:
+    app.kubernetes.io/part-of: tanzu-app
+    apps.tanzu.vmware.com/workload-type: web-basic
+    app.kubernetes.io/component: run
+    carto.run/workload-name: golang
+spec:
+  template:
+    metadata:
+      annotations:
+        conventions.apps.tanzu.vmware.com/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: tanzu-app
+        apps.tanzu.vmware.com/workload-type: web-basic
+        carto.run/workload-name: golang
+    spec:
+      containers:
+      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:1cdf2d7aecbaf4ba3f7b4a9a3a1105e6162e8f04fb0b36e789552744a12f1c33
+        name: workload
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
