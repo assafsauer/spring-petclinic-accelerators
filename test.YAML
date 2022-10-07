@@ -12,7 +12,7 @@ spec:
   template: # create pods using pod definition in this template
     metadata:
       labels:
-        app: nginx-test
+        app: nginx
     spec:
       containers:
       - name: nginx
