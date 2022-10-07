@@ -6,7 +6,6 @@ metadata:
     app.kubernetes.io/part-of: tanzu-app
     apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web-basic
-    networking.knative.dev/visibility: cluster-local
     app.kubernetes.io/component: run
     carto.run/workload-name: golang
 spec:
@@ -21,10 +20,9 @@ spec:
         apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web-basic
         carto.run/workload-name: golang
-        networking.knative.dev/visibility: cluster-local
     spec:
       containers:
-      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:0f2f5e79d3ee4c94002991d711d7d01b0807e9148728ebc205b20ec8b85398a1
+      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:4f0cf3c43186267a24d00555af788810772c10423d6f2b67fdb3ea6e6052ee97
         name: workload
         resources: {}
         securityContext:
