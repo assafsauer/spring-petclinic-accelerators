@@ -4,7 +4,6 @@ metadata:
   name: golang
   labels:
     app.kubernetes.io/part-of: tanzu-app
-    apps.tanzu.vmware.com/has-tests: "true"
     apps.tanzu.vmware.com/workload-type: web-basic
     app.kubernetes.io/component: run
     carto.run/workload-name: golang
@@ -17,12 +16,11 @@ spec:
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-app
-        apps.tanzu.vmware.com/has-tests: "true"
         apps.tanzu.vmware.com/workload-type: web-basic
         carto.run/workload-name: golang
     spec:
       containers:
-      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:32ef9bfa17b172a14d44db86ecfd90b2bf3c74847bf243d863133253c0c495d0
+      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:4e46ce91edccc5e43e80256e9c10a30f18f5b406bb8ffe1a71d4f162fcddccbc
         name: workload
         resources: {}
         securityContext:
