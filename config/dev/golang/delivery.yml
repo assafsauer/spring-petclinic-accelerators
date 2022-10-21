@@ -22,7 +22,7 @@ spec:
         carto.run/workload-name: golang
     spec:
       containers:
-      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:32ef9bfa17b172a14d44db86ecfd90b2bf3c74847bf243d863133253c0c495d0
+      - image: harbor.source-lab.io/tap/supply-chain/golang-dev@sha256:66b536001b32303a1987c9a7e4cb05c2d19222262b1dc2cf22b90cc2fd52944b
         name: workload
         resources: {}
         securityContext:
