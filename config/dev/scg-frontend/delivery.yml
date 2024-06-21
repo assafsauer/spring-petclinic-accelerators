@@ -1,0 +1,31 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: scg-frontend
+  labels:
+    app.kubernetes.io/part-of: tanzu-app
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web-basic
+    app.kubernetes.io/component: run
+    carto.run/workload-name: scg-frontend
+spec:
+  template:
+    metadata:
+      annotations:
+        conventions.apps.tanzu.vmware.com/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        developer.conventions/target-containers: workload
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: tanzu-app
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web-basic
+        carto.run/workload-name: scg-frontend
+    spec:
+      containers:
+      - image: harbor.source-lab.io/tap/supply-chain/scg-frontend-dev@sha256:40cb725b3a56ecb6a75b4a66790b6386fa6f0fbe023d8271a360af5f78a1b16c
+        name: workload
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
