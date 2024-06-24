@@ -2,10 +2,13 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: petclinic
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
   labels:
     app.kubernetes.io/part-of: tanzu-app
     apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: web-basic
     app.kubernetes.io/component: run
     carto.run/workload-name: petclinic
 spec:
@@ -14,7 +17,7 @@ spec:
       annotations:
         boot.spring.io/actuator: http://:8081/actuator
         boot.spring.io/version: 2.5.4
-        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+        conventions.carto.run/applied-conventions: |-
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
@@ -30,7 +33,7 @@ spec:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-app
         apps.tanzu.vmware.com/has-tests: "true"
-        apps.tanzu.vmware.com/workload-type: web
+        apps.tanzu.vmware.com/workload-type: web-basic
         carto.run/workload-name: petclinic
         conventions.apps.tanzu.vmware.com/framework: spring-boot
         services.conventions.apps.tanzu.vmware.com/mysql: workload
@@ -43,7 +46,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.source-lab.io/tap/supply-chain/petclinic-dev@sha256:97a9c4f1f533b0b88e88350284f60f1894a1572d7dc8974420fbd3ac3ca0fce7
+        image: harbor.source-lab.io/tap/supply-chain/petclinic-dev@sha256:957dfc582e2a5b4aee31a69e6dc92f46ccfd2cc124fa6fc3c4f607e25f4d7108
         name: workload
         ports:
         - containerPort: 8080
